@@ -1,4 +1,3 @@
-Ich habe dieses Script was auf einem Arduino läuft:
 #include <ros.h>
 #include <std_msgs/String.h>
 #include <std_msgs/Int32.h>
@@ -30,7 +29,7 @@ void setup() {
   Wire.begin();
   tofSensor.setTimeout(500); // Set a timeout for ToF sensor
   if (!tofSensor.init()) {
-    Serial.println("Failed to initialize VL53L0X (ToF)! Check wiring.");
+    //Serial.println("Failed to initialize VL53L0X (ToF)! Check wiring.");
     while (1); // Stop the program if ToF sensor initialization fails
   }
 
@@ -63,11 +62,11 @@ void loop() {
   // Handle ToF sensor data
   uint16_t distanceToF = tofSensor.readRangeContinuousMillimeters();
   if (tofSensor.timeoutOccurred()) {
-    Serial.println("ToF Sensor Timeout!");
+    //Serial.println("ToF Sensor Timeout!");
   } else {
-    Serial.print("ToF Sensor: Distance: ");
-    Serial.print(distanceToF);
-    Serial.println(" mm");
+    //Serial.print("ToF Sensor: Distance: ");
+    //Serial.print(distanceToF);
+    //Serial.println(" mm");
 
     // Check for movement (e.g., threshold change in distance)
     static uint16_t lastDistance = 0;
