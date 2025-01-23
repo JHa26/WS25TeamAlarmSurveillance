@@ -15,14 +15,17 @@ short sampleBuffer[256];
 volatile int samplesRead = 0;
 
 void setup() {
+  
   nh.initNode();
+  nh.getHardware()->setBaud(57600);
   nh.advertise(sound_publisher);
+  
 
   PDM.onReceive(onPDMdata);
 
   // Initialize PDM microphone
   if (!PDM.begin(1, 16000)) {
-    while (1);
+    //while (1);
   }
 
   // Initialize ToF sensor
@@ -46,10 +49,10 @@ void loop() {
     }
     soundLevel /= samplesRead;
 
-    if (soundLevel > 500) {
+    if (soundLevel > 120) {
       sound_msg.data = "Loud sound detected";
       sound_publisher.publish(&sound_msg);
-    } else if (soundLevel > 250) {
+    } else if (soundLevel > 100) {
       sound_msg.data = "Moderate sound detected";
     } else {
       sound_msg.data = "Quiet sound detected";
