@@ -49,10 +49,10 @@ void loop() {
     }
     soundLevel /= samplesRead;
 
-    if (soundLevel > 120) {
+    if (soundLevel > 200) {
       sound_msg.data = "Loud sound detected";
       sound_publisher.publish(&sound_msg);
-    } else if (soundLevel > 100) {
+    } else if (soundLevel > 150) {
       sound_msg.data = "Moderate sound detected";
     } else {
       sound_msg.data = "Quiet sound detected";
